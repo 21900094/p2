@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body style="font:100% Lucida Sans,Verdana ; line-height:26px ; margin:20px ; display:block">
+    <div class="container wrapper" >
+        <div class="top" style="background-color:#04AA6D ; color:#ffffff ; padding :15px ; border-radius:4px ; margin :4px; display:block">
+            <h1>Welcome to My Homepage</h1>
+            <p>Use the menu to select different Stylesheet</p>
+        </div>
+        <div class="wrapper" style="position:relative ; overflow:auto ;display:block">
+            <div class="menubar" style="width:200px ; float:left">
+                <ul class="menulist" style="display:block ; margin:0 ; padding:0">
+                    <li class="menuitem" onClick="reStyle(0)" style="background-color:#04AA6D ; color:white; font-weight:bold;border:1px solid #d4d4d4; padding:2px ; cursor:pointer; border-radius:4px;margin:4px" >Stylesheet1</li>
+                    <li class="menuitem" onClick="reStyle(1)" style="background-color:#f1f1f1 ; border:1px solid #d4d4d4; padding:2px; cursor:pointer ;border-radius:4px;margin:4px">Stylesheet2</li>
+                    <li class="menuitem" onClick="reStyle(2)" style="background-color:#f1f1f1 ; border:1px solid #d4d4d4; padding:2px; cursor:pointer ;border-radius:4px;margin:4px">Stylesheet3</li>
+                    <li class="menuitem" onClick="reStyle(3)" style="background-color:#f1f1f1 ; border:1px solid #d4d4d4; padding:2px; cursor:pointer ;border-radius:4px;margin:4px">Stylesheet4</li>
+                    <li class="menuitem" onClick="noStyles()" style="background-color:#f1f1f1 ; border:1px solid #d4d4d4; padding:2px; cursor:pointer ;border-radius:4px;margin:4px">No Stylesheet</li>
+                </ul>
+            </div>
+            <div class="main" style="padding:10px ; margin:0 210px">
+                <h1>Same Page Different Stylesheet</h1>
+                <p>This is a demonstration of how different stylesheets can change the layout of your HTML page. You can change the layout of this page by selecting different stylesheets in the menu, or by selecting one of the following links:
+                    <br>
+                    <a href="#" onClick="reStyle(0);return false" style="color:#000000 ; text-decoration:underline ; cursor:pointer">Stylesheet1</a> ,  
+                    <a href="#" onClick="reStyle(1);return false" style="color:#000000 ; text-decoration:underline ; cursor:pointer">Stylesheet2</a> ,  
+                    <a href="#" onClick="reStyle(2);return false" style="color:#000000 ; text-decoration:underline ; cursor:pointer">Stylesheet3</a> ,  
+                    <a href="#" onClick="reStyle(3);return false" style="color:#000000 ; text-decoration:underline ; cursor:pointer">Stylesheet4</a>. 
+                </p>
+                <h2>No Styles</h2>
+                <p>
+                    This page uses DIV elements to group different sections of the HTML page. Click here to see how the page looks like with no stylesheet:
+                    <br>
+                    <a href="#" onClick="noStyles();return false" style="color:#000000 ; text-decoration:underline ; cursor:pointer">No Stylesheet</a>
+                </p>
+            </div>
+            <div class="sidebar" style="background-color:#32a4e7 ; color:#ffffff ; padding:10px ; width:180px ; bottom:0 ; top:0;right:0; position:absolute ; border-radius:4px ; margin:4px">
+                <h3 style="display:block ; font-size:1.17em ; margin-block-start:1em ; margin-block-end:1em ; margin-inline-start:0px; margin-inline-end:0px; font-weight:bold">Side-Bar</h3>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+            </div>
+        </div>
+        <div class="bottom" style="border:1px solid #d4d4d4 ; background-color:#f1f1f1;text-align:center ; padding:10px ; font-size:70% ; line-height:14px ; border-radius:4px ; margin:4px">
+            Side-Bar
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+        </div>
+    </div>
+    <script>
+
+function noStyles() {
+    document.styleSheets[0].disabled = true;
+    document.styleSheets[1].disabled = true;
+    document.styleSheets[2].disabled = true;
+    document.styleSheets[3].disabled = true;
+}
+
+function reStyle(n) {
+    noStyles()
+    document.styleSheets[n].disabled = false;
+}
+
+function closeBlackdiv() {
+    var blackdiv, stylediv;
+    blackdiv = document.getElementById("blackdiv")
+    blackdiv.parentNode.removeChild(blackdiv);
+    stylediv = document.getElementById("stylediv")
+    stylediv.parentNode.removeChild(stylediv);
+}
+
+function showStyle(n) {
+var div, text, blackdiv;
+blackdiv = document.createElement("DIV");
+blackdiv.setAttribute("style","background-color:#000000;position:absolute;width:100%;height:100%;top:0;opacity:0.5;margin-left:-20px;");
+blackdiv.setAttribute("id","blackdiv");
+blackdiv.setAttribute("onclick","closeBlackdiv()");
+document.body.appendChild(blackdiv);
+div = document.createElement("DIV");
+div.setAttribute("id","stylediv");
+div.setAttribute("style","background-color:#ffffff;padding-left:5px;position:absolute;width:auto;height:auto;top:100px;bottom:50px;left:200px;right:200px;overflow:auto;font-family: monospace; white-space: pre;line-height:16px;");
+text = document.createTextNode(document.getElementsByTagName("STYLE")[n].innerHTML);
+div.appendChild(text);
+document.body.appendChild(div);
+//alert(document.getElementsByTagName("STYLE")[n].innerHTML);
+}
+reStyle(0);
+
+    </script>
+
+</body>
+</html>
